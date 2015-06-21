@@ -1,0 +1,94 @@
+/* Main elements */
+
+body {
+  font-family: ubuntu;
+}
+
+.content {
+  width: 100%;
+  max-width: 60em;
+  margin: 0 auto 0;
+  border: 2pt solid #e0e0e0;
+  background-color: #f8f8f8;
+  border-radius: 5pt;
+  word-wrap: break-word;
+}
+
+h1, h2 {
+  margin-left: 10pt;
+}
+
+.body li {
+  font-size: 14pt;
+  margin: 5pt;
+}
+
+p.msg {
+  border: 2pt dashed #e0e0e0;
+  padding: 3pt;
+  font-weight: bold;
+  font-size: 16pt;
+}
+
+form {
+  margin: 10pt;
+}
+
+form * {
+  margin-left: 10pt;
+}
+
+textarea {
+  width: 100%;
+  max-width: 300pt;
+}
+
+p {
+  margin: 20pt;
+}
+
+p.note {
+  font-style: italic;
+}
+
+/* Navigation */
+
+.header ul {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: block;
+  text-align: center;
+}
+
+.header li {
+  width: 33.334%;
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+  text-align: center;
+  /* IE9- */
+  list-style: none;
+}
+
+.header li a {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  text-decoration: none;
+  color: black;
+  font-size: 1.5em;
+  width: 100%;
+  display: inline-block;
+  padding: 10pt 0 10pt;
+  border: 2pt solid #e0e0e0;
+  background-color: #e0e0e0;
+  
+}
+
+.header li a:hover {
+  background-color: white;
+}
+
+

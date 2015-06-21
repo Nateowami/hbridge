@@ -1,0 +1,18 @@
+doctype html
+html(lang="en")
+  head
+    title Transfer files & text with httptooth.js
+    link(rel="stylesheet" href="/assets/style.css")
+  body
+    .content
+      .header
+        ul
+          li: a(href="/") Home
+          li: a(href="/upload") Upload
+          li: a(href="/download") Download
+      .body
+        if(msg)
+          p.msg=msg
+        block content
+      
+      p Powered by <a href="https://github.com/Nateowami/httptooth.js">httptooth.js</a> v1.0, written by <a href="https://github.com/Nateowami">Nathaniel Paulus</a>, licensed with the <a href="http://opensource.org/licenses/MIT">MIT</a>, and awaiting your contributions on <a href="https://github.com/Nateowami/httptooth.js">GitHub</a>.

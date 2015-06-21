@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  h1 Download
+  
+  h2 Text
+  
+  p Copy the text below to "download."
+  if text.length
+    ol
+      for i in text
+        li: p=i
+  else
+    p.note No text has been uploaded.
+  
+  h2 Files
+  
+  p Click a file name to download.
+  if files.length
+    ol
+      each file in files
+        li: a(href=file.url, target="_blank" download)=file.name
+  else
+    p.note No files have been uploaded.
+  
+  p.note To delete files, navigate to public/uploads in the directory where httptooth.js is running, and delete the files from there. To delete text, just delete uploaded_text.json from the public directory.

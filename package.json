@@ -1,0 +1,31 @@
+{
+  "name": "httptooth.js",
+  "version": "1.0.0",
+  "description": "Transfer files & text between devices with HTTP",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Nateowami/httptooth.js"
+  },
+  "keywords": [
+    "networking",
+    "files",
+    "devices",
+    "transfer"
+  ],
+  "author": "Nathaniel Paulus",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Nateowami/httptooth.js/issues"
+  },
+  "homepage": "https://github.com/Nateowami/httptooth.js",
+  "dependencies": {
+    "body-parser": "^1.13.1",
+    "express": "^4.12.4",
+    "jade": "^1.11.0",
+    "multer": "^0.1.8"
+  }
+}
