@@ -5,7 +5,11 @@ app.use(require("multer")(
   {
     dest: __dirname + '/public/uploads',
     rename: function(fieldname, filename) {
-      return filename;
+      // Append a random number to the file name to avoid overwriting 
+      // files with the same name. This is especially important since some 
+      // devices (such as the iPad) name all images image.jpeg, even when 
+      // multiple images are uploaded with one HTTP request.
+      return filename + "-" + Math.floor(Math.random()*1000000000);
     }
 }));
 app.use(require("body-parser").json());
