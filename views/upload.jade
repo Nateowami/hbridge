@@ -1,18 +1,18 @@
 extends layout
 
 block content
-  h1 Upload
-  
+  header: h1 Upload
+
   p Select files or paste text into the textbox (or both). Then click the upload button.
-  
+
   form(action="/upload", method="post", enctype="multipart/form-data")
-  
-    h2 Text upload
-    textarea(rows="10", name="text")
-    
-    h2 File upload
-    input(type="file", name="files", multiple)
-    
-    h2 Upload it
-    
-    button(type="submit") Upload Data
+
+    header: h2 Text upload
+    .pad: textarea(rows="10", name="text" placeholder="Paste or type text here")
+
+    header: h2 File upload
+    .pad: input(type="file", name="files", multiple)
+
+    header: h2 Upload it
+
+    .pad: button(type="submit") Upload Data

@@ -5,9 +5,9 @@ app.use(require("multer")(
   {
     dest: __dirname + '/public/uploads',
     rename: function(fieldname, filename) {
-      // Append a random number to the file name to avoid overwriting 
-      // files with the same name. This is especially important since some 
-      // devices (such as the iPad) name all images image.jpeg, even when 
+      // Append a random number to the file name to avoid overwriting
+      // files with the same name. This is especially important since some
+      // devices (such as the iPad) name all images image.jpeg, even when
       // multiple images are uploaded with one HTTP request.
       return filename + "-" + Math.floor(Math.random()*1000000000);
     }
@@ -18,7 +18,7 @@ var fs = require("fs");
 // Declare an array for uploaded text
 var uploadedText = [];
 
-// Configure views 
+// Configure views
 app.set("views", "./views");
 app.set("view engine", "jade");
 
@@ -53,20 +53,25 @@ app.post("/upload", function(req, res){
     //return res.send(JSON.stringify(req.body.text));
     // See whether files or text was uploaded
     var text = !!req.body.text, files = !!req.files.files;
-    var msg = "";
+    var msg = "", success;
     // If something was uploaded
     if(text || files){
       if(text && files) msg = "Text and files were";
       else if(text && !files) msg = "Text was";
       else msg = "Files were";
-      msg += " uploaded successfully."
+      msg += " uploaded successfully.";
+      success = true;
     }
-    else msg = "Nothing was uploaded.";
-    
+    else {
+      msg = "Nothing was uploaded.";
+      success = false;
+    }
+
     listUploads(function(list){
-      res.render("download", 
+      res.render("download",
         {
-          msg: msg, 
+          msg: msg,
+          success: success,
           text: uploadedText,
           files: list
         });
@@ -77,7 +82,7 @@ app.post("/upload", function(req, res){
 var server = app.listen(process.env.PORT || 3000, function(){
   // Say where we're listening for requests
   console.log(
-      "httptooth.js listening at http://%s:%s", 
+      "httptooth.js listening at http://%s:%s",
       server.address().address,
       server.address().port
     );
@@ -87,7 +92,7 @@ var server = app.listen(process.env.PORT || 3000, function(){
 function addText(text){
   uploadedText.push(text);
   fs.writeFile(__dirname + "/public/uploaded_text.json",
-    JSON.stringify(uploadedText), 
+    JSON.stringify(uploadedText),
     function(err) {if(err) throw err;});
 }
 

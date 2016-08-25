@@ -1,6 +1,53 @@
+/* Disable Picnic's default transition, which lasts for about a second on page load */
+* {
+  transition: all 0s ease !important;
+}
+
+header ul.flex {
+  list-style-type: none;
+  max-width: 500pt;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  padding-left: 0;
+}
+
+header ul li {
+  display: inline-block;
+  list-style-type: none;
+}
+
+header ul li a {
+  font-size: 18pt;
+}
+
+@media (min-resolution: 2dppx) {
+  header ul li a {
+    font-size: 40pt;
+  }
+}
+
+.content {
+  width: 50em;
+  max-width: 100%;
+  margin: 0 auto;
+  word-wrap: break-word;
+  margin-bottom: 25pt;
+}
+
+textarea {
+  height: 100pt;
+}
+
+.pad {
+  padding: 10pt;
+}
+
+/* OLD CODE BELOW */
+
 /* Main elements */
 
-body {
+/*body {
   font-family: ubuntu;
 }
 
@@ -49,11 +96,11 @@ p {
 
 p.note {
   font-style: italic;
-}
+}*/
 
 /* Navigation */
 
-.header ul {
+/*.header ul {
   width: 100%;
   padding: 0;
   margin: 0;
@@ -67,9 +114,9 @@ p.note {
   padding: 0;
   margin: 0;
   display: inline-block;
-  text-align: center;
+  text-align: center;*/
   /* IE9- */
-  list-style: none;
+  /*list-style: none;
 }
 
 .header li a {
@@ -84,11 +131,9 @@ p.note {
   padding: 10pt 0 10pt;
   border: 2pt solid #e0e0e0;
   background-color: #e0e0e0;
-  
+
 }
 
 .header li a:hover {
   background-color: white;
-}
-
-
+}*/
