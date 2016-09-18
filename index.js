@@ -1,17 +1,32 @@
 // Setup Express
 var express = require("express");
 var app = express();
-app.use(require("multer")(
-  {
-    dest: __dirname + '/public/uploads',
-    rename: function(fieldname, filename) {
-      // Append a random number to the file name to avoid overwriting
-      // files with the same name. This is especially important since some
-      // devices (such as the iPad) name all images image.jpeg, even when
-      // multiple images are uploaded with one HTTP request.
-      return filename + "-" + Math.floor(Math.random()*1000000000);
+var path = require('path');
+
+var uploadsDir = __dirname + '/public/uploads';
+
+var ufn = require('unique-file-name')({
+  // Slugified file name, followed optionally by an integer (to keep names
+  // unique), followed by the slugified extension.
+  format: '%b%i%e',
+  dir: uploadsDir
+});
+
+var multer = require('multer');
+
+var storage = multer({
+  storage: multer.diskStorage({
+    destination: uploadsDir,
+    filename: function (req, file, cb) {
+      // Write an empty file, then have multer overwite it
+      ufn(file.originalname, function(err, file){
+        if(err) return cb(err);
+        cb(err, path.basename(file));
+      });
     }
-}));
+  })
+});
+
 app.use(require("body-parser").json());
 
 var fs = require("fs");
@@ -46,21 +61,27 @@ app.get("/uploads/:file", function(req, res){
 });
 
 // POST data
-app.post("/upload", function(req, res){
+app.post("/upload", storage.array('files[]'), function(req, res){
+
     // Files are automatically saved by multer
     // Save text
     if(req.body.text) addText(req.body.text);
-    //return res.send(JSON.stringify(req.body.text));
+
     // See whether files or text was uploaded
-    var text = !!req.body.text, files = !!req.files.files;
-    var msg = "", success;
+    var text = !!req.body.text, files = req.files.length > 0;
+    var msg, success;
     // If something was uploaded
-    if(text || files){
-      if(text && files) msg = "Text and files were";
-      else if(text && !files) msg = "Text was";
-      else msg = "Files were";
-      msg += " uploaded successfully.";
+    if(text || files) {
       success = true;
+      msg = 'Successfully uploaded ';
+      var fileMsg;
+      if(files) {
+        var count = req.files.length;
+        fileMsg = count + (count == 1 ? ' file' : ' files');
+      }
+      if(text && files) msg += 'text and ' + fileMsg + '.';
+      else if(text && !files) msg += 'text.';
+      else msg += fileMsg + '.';
     }
     else {
       msg = "Nothing was uploaded.";

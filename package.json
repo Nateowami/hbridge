@@ -26,6 +26,19 @@
     "body-parser": "^1.13.1",
     "express": "^4.12.4",
     "jade": "^1.11.0",
-    "multer": "^0.1.8"
+    "multer": "^1.2.0",
+    "unique-file-name": "^0.1.4"
+  },
+  "jshintConfig": {
+    "undef": true,
+    "unused": true,
+    "predef": [
+      "require",
+      "console",
+      "module",
+      "Buffer",
+      "__dirname",
+      "process"
+    ]
   }
 }
