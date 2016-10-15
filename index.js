@@ -1,4 +1,5 @@
 // Setup Express
+var http = require('http');
 var express = require("express");
 var app = express();
 var path = require('path');
@@ -99,15 +100,20 @@ app.post("/upload", storage.array('files[]'), function(req, res){
     });
 });
 
-// Connect to the specified port
-var server = app.listen(process.env.PORT || 3000, function(){
-  // Say where we're listening for requests
-  console.log(
-      "httptooth.js listening at http://%s:%s",
-      server.address().address,
-      server.address().port
-    );
+var server = http.createServer(app);
+server.on('listening', function() {
+  console.log('httptooth.js listening on port ' + server.address().port);
 });
+server.on('error', function(err){
+  // If the port was specified, throw an error for the failed binding
+  if(process.env.PORT) throw new Error('Could not bind to specified port ' + process.env.PORT);
+  // Try the next port if this one is in use
+  else if(err.code === 'EADDRINUSE') {
+    server.listen(err.port + 1);
+  }
+  else throw err;
+});
+server.listen(process.env.PORT || 3000);
 
 // Saves a new piece of uploaded text
 function addText(text){
