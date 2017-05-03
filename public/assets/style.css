@@ -25,9 +25,17 @@ header ul li a {
   header ul li a {
     font-size: 40pt;
   }
+
+  .content {
+    font-size: 2em;
+  }
+
+  footer {
+    font-size: 1.25em;
+  }
 }
 
-.content {
+.content, footer {
   width: 50em;
   max-width: calc(100% - 20pt);
   margin: 0 auto 25pt;
@@ -44,6 +52,20 @@ textarea {
 
 ol {
   margin-left: 30pt;
+}
+
+footer ul {
+  list-style-type: none;
+}
+
+footer ul li {
+  display: inline-block;
+  padding-right: 1em;
+}
+
+footer ul li:not(:last-child)::after {
+  padding-left: 1em;
+  content: '|';
 }
 
 /* OLD CODE BELOW */
