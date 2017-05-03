@@ -3,6 +3,7 @@ var http = require('http');
 var express = require("express");
 var app = express();
 var path = require('path');
+const devIp = require('dev-ip')
 
 var uploadsDir = __dirname + '/public/uploads';
 
@@ -35,11 +36,11 @@ var fs = require("fs");
 var uploadedText = [];
 
 // Configure views
-app.set("views", "./views");
+app.set("views", path.join(__dirname, 'views'));
 app.set("view engine", "pug");
 
 // Server static files
-app.use("/assets", express.static("public/assets"));
+app.use("/assets", express.static(path.join(__dirname, 'public', 'assets')));
 
 // GET pages
 app.get("/", function(req, res){
@@ -102,7 +103,11 @@ app.post("/upload", storage.array('files[]'), function(req, res){
 
 var server = http.createServer(app);
 server.on('listening', function() {
-  console.log('httptooth.js listening on port ' + server.address().port);
+  const port = server.address().port
+  console.log('Local URL: http://localhost:' + port)
+  const ip = devIp()
+  if(ip[0]) console.log(`External URL: http://${devIp()}:${port}`)
+  else console.log('Unable to find external IP address. Perhaps you are offline?')
 });
 server.on('error', function(err){
   // If the port was specified, throw an error for the failed binding

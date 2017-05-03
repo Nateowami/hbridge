@@ -24,6 +24,7 @@
   "homepage": "https://github.com/Nateowami/httptooth.js",
   "dependencies": {
     "body-parser": "^1.17.1",
+    "dev-ip": "^1.0.1",
     "express": "^4.15.2",
     "multer": "^1.2.0",
     "pug": "^2.0.0-rc.1",
