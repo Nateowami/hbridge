@@ -23,7 +23,7 @@ node . # Or from outside the directory, node path/to/hbridge
 PORT=8000 node . # Run on a different port. Default is 3000.
 ```
 
-Open your browser to `localhost:3000` (or wherever the server is running). You'll also be given a URL that can be used withing the local network (e.g. `192.168.1.101:3000`). If you have trouble accessing the server from other devices on the network, check your firewall.
+Open your browser to `localhost:3000` (or wherever the server is running). You can also find the local network server address in the output (e.g. `http://192.168.1.101:3000`). If you have trouble accessing the server from other devices on the network, check your firewall.
 
 #### Uploading
 
