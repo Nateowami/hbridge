@@ -1,14 +1,14 @@
 {
-  "name": "httptooth.js",
-  "version": "1.0.0",
-  "description": "Transfer files & text between devices with HTTP",
+  "name": "hbridge",
+  "version": "2.0.0",
+  "description": "Transfer files & text between devices on the local network",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Nateowami/httptooth.js"
+    "url": "https://github.com/Nateowami/hbridge"
   },
   "keywords": [
     "networking",
@@ -19,9 +19,9 @@
   "author": "Nathaniel Paulus",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Nateowami/httptooth.js/issues"
+    "url": "https://github.com/Nateowami/hbridge/issues"
   },
-  "homepage": "https://github.com/Nateowami/httptooth.js",
+  "homepage": "https://github.com/Nateowami/hbridge",
   "dependencies": {
     "body-parser": "^1.17.1",
     "dev-ip": "^1.0.1",
