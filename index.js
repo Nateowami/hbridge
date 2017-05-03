@@ -21,9 +21,12 @@ var storage = multer({
     destination: uploadsDir,
     filename: function (req, file, cb) {
       // Write an empty file, then have multer overwite it
-      ufn(file.originalname, function(err, file){
+      const oldName = file.originalname
+      ufn(oldName, function(err, fullPath){
         if(err) return cb(err);
-        cb(err, path.basename(file));
+        const newName = path.basename(fullPath)
+        console.log('Saving file ' + oldName + (newName == oldName ? '' : ' as ' + newName))
+        cb(null, path.basename(fullPath));
       });
     }
   })
@@ -59,6 +62,7 @@ app.get("/download", function(req, res){
 });
 
 app.get("/uploads/:file", function(req, res){
+  console.log('Downloading file ' + req.params.file)
   res.download(__dirname + "/public/uploads/" + req.params.file);
 });
 
@@ -108,6 +112,7 @@ server.on('listening', function() {
   const ip = devIp()
   if(ip[0]) console.log(`External URL: http://${devIp()}:${port}`)
   else console.log('Unable to find external IP address. Perhaps you are offline?')
+  console.log('--------------------')
 });
 server.on('error', function(err){
   // If the port was specified, throw an error for the failed binding
