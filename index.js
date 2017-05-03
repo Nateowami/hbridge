@@ -105,6 +105,21 @@ app.post("/upload", storage.array('files[]'), function(req, res){
     });
 });
 
+app.use(function(req, res) {
+  res.render('error', {
+    error: {
+      status: 404, message: 'Page not found'
+    }
+  })
+})
+
+app.use(function(err, req, res, next) {
+  err.status = 500
+  err.message = 'Internal server error'
+  res.status(500)
+  res.render('error', {error: err})
+})
+
 var server = http.createServer(app);
 server.on('listening', function() {
   const port = server.address().port
