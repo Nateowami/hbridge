@@ -4,11 +4,13 @@ block content
   header: h1 Instructions
 
   ol
-    li Click the upload tab above.
-    li Select files from your device, or paste text you wish to upload.
-    li Click on "Upload Data."
-    li Open this page on the device you want to send files or text to.
-    li Click the download tab above.
-    li Download files or copy text.
+    li Go to the Upload tab and upload files or text.
+    li Open this page
+      if url
+        |  (
+        a(href=url)=url
+        | )
+      |  on the device you want to send files or text to.
+    li Go to the Download tab and save the files or copy the text.
 
   p If you run into problems, <a href="https://github.com/Nateowami/httptooth.js">open an issue on GitHub.</a>

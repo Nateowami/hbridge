@@ -4,6 +4,7 @@ var express = require("express");
 var app = express();
 var path = require('path');
 const devIp = require('dev-ip')
+let port
 
 var uploadsDir = __dirname + '/public/uploads';
 
@@ -46,8 +47,10 @@ app.set("view engine", "pug");
 app.use("/assets", express.static(path.join(__dirname, 'public', 'assets')));
 
 // GET pages
-app.get("/", function(req, res){
-  res.render("index");
+app.get('/', function(req, res) {
+  const ip = devIp()[0]
+  const url = ip && port ? `http://${ip}:${port}` : null
+  res.render('index', {url});
 });
 
 app.get("/upload", function(req, res){
@@ -122,7 +125,7 @@ app.use(function(err, req, res, next) {
 
 var server = http.createServer(app);
 server.on('listening', function() {
-  const port = server.address().port
+  port = server.address().port
   console.log('Local URL: http://localhost:' + port)
   const ip = devIp()
   if(ip[0]) console.log(`External URL: http://${devIp()}:${port}`)
