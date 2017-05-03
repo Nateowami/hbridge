@@ -23,10 +23,10 @@
   },
   "homepage": "https://github.com/Nateowami/httptooth.js",
   "dependencies": {
-    "body-parser": "^1.13.1",
-    "express": "^4.12.4",
-    "jade": "^1.11.0",
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
     "multer": "^1.2.0",
+    "pug": "^2.0.0-rc.1",
     "unique-file-name": "^0.1.4"
   },
   "jshintConfig": {

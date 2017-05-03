@@ -36,7 +36,7 @@ var uploadedText = [];
 
 // Configure views
 app.set("views", "./views");
-app.set("view engine", "jade");
+app.set("view engine", "pug");
 
 // Server static files
 app.use("/assets", express.static("public/assets"));
